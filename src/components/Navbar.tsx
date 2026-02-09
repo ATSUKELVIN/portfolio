@@ -1,66 +1,39 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const { isDark, toggleTheme } = useTheme();
 
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      style={{
-        ...styles.nav,
-        backgroundColor: isScrolled ? 'rgba(15, 23, 42, 0.9)' : 'transparent',
-        borderBottom: isScrolled ? '1px solid #334155' : 'none',
-      }}
-    >
-      <div style={styles.container}>
-        <div style={styles.logo}>KA<span style={{color: '#2563EB'}}>.</span></div>
-        <ul style={styles.navList}>
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a href={link.href} style={styles.navLink}>{link.name}</a>
-            </li>
-          ))}
-        </ul>
+    <nav style={navStyles.nav}>
+      <div style={navStyles.logo}>KA.</div>
+      <div style={navStyles.links}>
+        <a href="#about" style={navStyles.link}>About</a>
+        <a href="#projects" style={navStyles.link}>Projects</a>
+        <button onClick={toggleTheme} style={navStyles.toggle}>
+          {isDark ? <FaSun color="#FBBF24" /> : <FaMoon color="#1E293B" />}
+        </button>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
-const styles = {
-  nav: {
+const navStyles = {
+  nav: { 
+    display: 'flex', 
+    justifyContent: 'space-between', 
+    padding: '20px 40px', 
+    backgroundColor: 'var(--bg-secondary)',
     position: 'fixed' as const,
-    top: 0,
     width: '100%',
+    top: 0,
     zIndex: 1000,
-    transition: 'all 0.3s ease',
-    backdropFilter: 'blur(10px)',
+    transition: '0.3s'
   },
-  container: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logo: { fontSize: '1.5rem', fontWeight: 'bold', color: '#F1F5F9' },
-  navList: { display: 'flex', gap: '30px', listStyle: 'none' },
-  navLink: { color: '#94A3B8', textDecoration: 'none', fontWeight: '500', transition: '0.3s' },
+  logo: { fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)' },
+  links: { display: 'flex', gap: '20px', alignItems: 'center' },
+  link: { textDecoration: 'none', color: 'var(--text-muted)', fontWeight: 500 },
+  toggle: { background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', display: 'flex', alignItems: 'center' }
 };
 
 export default Navbar;

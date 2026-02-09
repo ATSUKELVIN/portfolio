@@ -59,19 +59,23 @@ const About = () => {
     </section>
   );
 };
-
 const styles = {
-  section: { padding: '100px 20px', backgroundColor: '#0B1120', color: '#F1F5F9' },
+  section: { 
+    padding: '100px 20px', 
+    backgroundColor: 'var(--bg-primary)', 
+    color: 'var(--text-main)',
+    transition: '0.3s'
+  },
   container: { maxWidth: '1100px', margin: '0 auto', display: 'flex', flexWrap: 'wrap' as const, gap: '60px' },
   textColumn: { flex: '1 1 450px' },
   skillsColumn: { flex: '1 1 400px' },
-  heading: { fontSize: '2.5rem', marginBottom: '1.5rem', color: '#2563EB' },
+  heading: { fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--accent-color)' },
   subHeading: { fontSize: '1.8rem', marginBottom: '1.5rem' },
-  paragraph: { fontSize: '1.1rem', lineHeight: '1.8', color: '#94A3B8', marginBottom: '1.2rem' },
+  paragraph: { fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-muted)', marginBottom: '1.2rem' },
   skillBarContainer: { marginBottom: '20px' },
   skillLabel: { display: 'flex', justifyContent: 'space-between', marginBottom: '8px' },
-  progressBarBg: { height: '8px', backgroundColor: '#1E293B', borderRadius: '4px', overflow: 'hidden' },
-  progressBarFill: { height: '100%', backgroundColor: '#2563EB' },
+  progressBarBg: { height: '8px', backgroundColor: 'var(--border-color)', borderRadius: '4px', overflow: 'hidden' },
+  progressBarFill: { height: '100%', backgroundColor: 'var(--accent-color)' },
 };
 
 export default About;
