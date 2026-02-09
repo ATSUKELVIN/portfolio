@@ -1,6 +1,6 @@
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../ThemeContext'; // Or the correct relative path based on your sidebar
 import { FaSun, FaMoon } from 'react-icons/fa';
-
+import { useTheme } from '../../backend/src/routes/ThemeContext';
 const Navbar = () => {
   const { isDark, toggleTheme } = useTheme();
 
